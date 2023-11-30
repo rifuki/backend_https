@@ -8,7 +8,8 @@ use actix_web::{
 use rst04_jwt::{
     AppState, 
     establish_connection,
-    auth::scoped_auth
+    auth::scoped_auth,
+    user::scoped_user
 };
 
 #[actix_web::main]
@@ -36,15 +37,16 @@ async fn main() -> std::io::Result<()> {
     let app_state = web::Data::new( AppState { db_pool } );
     /* end database pool */
 
-    /* * server engine */
+    /* * backbone server */
     HttpServer::new(move || {
         App::new()
             .app_data(app_state.clone())
             .wrap(middleware::NormalizePath::trim())
             .configure(scoped_auth)
+            .configure(scoped_user)
     })
     .bind(format!("0.0.0.0:{}", app_port))?
     .run()
     .await
-    /* * end server engine */
+    /* * end backbone server */
 }

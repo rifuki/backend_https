@@ -1,10 +1,5 @@
 use actix_web::http::StatusCode;
 use argon2::{
-    password_hash::{
-        SaltString,  
-        rand_core::OsRng
-    },
-    PasswordHasher,
     Argon2,
     PasswordHash, 
     PasswordVerifier,
@@ -18,21 +13,6 @@ use crate::{
     },
     auth::model::Credentials
 };
-
-/* * check username return bool */
-pub async fn check_username(
-    db_pool: &DbPool, 
-    username: &str
-) -> bool 
-{
-    let sql_query = sqlx::query("SELECT username FROM credentials WHERE username = ?");
-    sql_query
-        .bind(username)
-        .fetch_one(db_pool)
-        .await
-        .is_ok()
-}
-/* * end check username return bool */
 
 /* * get user credentials returns Result Query */
 pub async fn get_user_credentials(
@@ -48,32 +28,6 @@ pub async fn get_user_credentials(
     query_result
 }
 /* * get user credentials returns Result Query */
-
-/* * hashing user password */
-pub fn hashing_password(
-    user_payload_password: &str
-) -> Result<String, AppError>
-{
-    let salt = SaltString::generate(OsRng);
-    let argon2 = Argon2::default();
-    
-    let hashed_password = argon2.hash_password(
-        user_payload_password.as_bytes(),
-        &salt
-    )
-    .map_err(|e| {
-        log::error!("error hashing user password {}", e);
-        let app_err_message = AppErrorMessage {
-            code: StatusCode::INTERNAL_SERVER_ERROR.as_u16(),
-            message: format!("failed to hash password: {}", user_payload_password),
-            details: Some(e.to_string())
-        };
-        AppError::InternalServerError(app_err_message.into())
-    })?;
-
-    Ok(hashed_password.to_string())
-}
-/* * end hashing user password */
 
 /* * verifying stored user password */
 pub fn verify_password(
