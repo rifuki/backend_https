@@ -3,7 +3,7 @@ use validator::Validate;
 use sqlx::Row;
 
 use crate::{
-    AppState, 
+    types::AppState, 
     user::{
         model::UserPayload,
         helpers::{

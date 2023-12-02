@@ -12,6 +12,8 @@ lazy_static! {
 pub struct Credentials {
     pub username: String,
     pub password: String,
+    pub refresh_token: String,
+    pub max_age: i64
 }
 
 #[derive(Deserialize)]

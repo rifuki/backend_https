@@ -1,7 +1,7 @@
 use actix_web::http::StatusCode;
 
 use crate::{
-    AppState, 
+    types::AppState, 
     errors::{
         AppError, 
         AppErrorMessage

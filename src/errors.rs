@@ -25,9 +25,11 @@ pub enum AppError {
     #[error("Not Found: {0}")]
     NotFound(JsonValue),
     #[error("Unauthorized: {0}")]
-    Unauthorized(JsonValue)
-    // #[error("Bad Request: {0}")]
-    // BadRequest(JsonValue)
+    Unauthorized(JsonValue),
+    #[error("Forbidden: {0}")]
+    Forbidden(JsonValue),
+    #[error("See Other: {0}")]
+    SeeOther(JsonValue),
 }
 
 /* * convert AppError to HttpResponse */
@@ -38,8 +40,9 @@ impl ResponseError for AppError {
             Self::InternalServerError(ref message) => HttpResponse::InternalServerError().json(message),
             Self::Conflict(ref message) => HttpResponse::Conflict().json(message),
             Self::NotFound(ref message) => HttpResponse::NotFound().json(message),
-            Self::Unauthorized(ref message) => HttpResponse::Unauthorized().json(message)
-            // Self::BadRequest(ref message) => HttpResponse::BadRequest().json(message)
+            Self::Unauthorized(ref message) => HttpResponse::Unauthorized().json(message),
+            Self::Forbidden(ref message) => HttpResponse::Forbidden().json(message),
+            Self::SeeOther(ref message) => HttpResponse::SeeOther().json(message)
         }
     }
 }
@@ -94,7 +97,7 @@ impl From<ValidationErrors> for AppError {
         let error_status = StatusCode::UNPROCESSABLE_ENTITY;
         let app_error_message = AppErrorMessage {
             code: error_status.into(),
-            message: String::from("validation failed: there are errors in the input data."),
+            message: String::from("validation failed. there are errors in the input data."),
             details: Some(cleaned_errors)
         };
         AppError::UnprocessableEntity(app_error_message.into())

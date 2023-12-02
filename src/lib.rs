@@ -1,11 +1,13 @@
-pub mod auth;
-pub mod user;
+mod auth;
+mod user;
+
+pub use auth::scoped_auth;
+pub use user::scoped_user;
+
+
 mod db;
 mod errors;
+mod types;
 
 pub use db::establish_connection;
-
-#[derive(Clone)]
-pub struct AppState {
-    pub db_pool: db::DbPool
-}
+pub use types::AppState;

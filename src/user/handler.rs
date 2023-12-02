@@ -7,7 +7,7 @@ use actix_web::{
 use serde_json::json;
 
 use crate::{
-    AppState,
+    types::AppState,
     user::{
         services::{
             get_all_users::get_all_users_service,
@@ -20,16 +20,18 @@ use crate::{
            In,
             UserPayload 
         }
-    }
+    },
+    auth::JwtAuth
 };
 
 pub async fn get_all_users(
+    jwt_auth: JwtAuth,
     app_state: web::Data<AppState>
 ) -> impl Responder 
 {
     let app_state = app_state.get_ref();
     
-    let get_all_users_service = get_all_users_service(app_state).await;
+    let get_all_users_service = get_all_users_service(jwt_auth, app_state).await;
     match get_all_users_service {
         Ok(users) => {
             let status_code = StatusCode::OK;
@@ -47,6 +49,7 @@ pub async fn get_all_users(
 }
 
 pub async fn get_user(
+    _: JwtAuth,
     app_state: web::Data<AppState>,
     path: web::Path<u32>
 ) -> impl Responder 
@@ -94,6 +97,7 @@ pub async fn insert_user(
 }
 
 pub async fn update_user(
+    _: JwtAuth,
     app_state: web::Data<AppState>,
     path: web::Path<u32>,
     payload: web::Json<In<UserPayload>>
@@ -118,6 +122,7 @@ pub async fn update_user(
 }
 
 pub async fn delete_user(
+    _: JwtAuth,
     app_state: web::Data<AppState>,
     path: web::Path<u32>
 ) -> impl Responder {

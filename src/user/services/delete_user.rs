@@ -2,7 +2,7 @@ use actix_web::http::StatusCode;
 use sqlx::Row;
 
 use crate::{
-    AppState, 
+    types::AppState, 
     errors::{
         AppError, 
         AppErrorMessage

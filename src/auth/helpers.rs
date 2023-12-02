@@ -1,9 +1,13 @@
-use actix_web::http::StatusCode;
+use actix_web::{
+    http::StatusCode,
+    cookie::time::Duration as ActixDuration
+};
 use argon2::{
     Argon2,
     PasswordHash, 
     PasswordVerifier,
 };
+use chrono::Utc;
 
 use crate::{
     db::DbPool, 
@@ -54,3 +58,12 @@ pub fn verify_password(
     Ok(verified_password)
 }
 /* * end verifying stored user password */
+
+/* * convert timestamp to actix duration */
+pub fn convert_timestamp_to_actix_duration(timestamp: i64) -> ActixDuration {
+    let current_time = Utc::now().naive_utc().timestamp();
+    let duration = timestamp - current_time;
+
+    ActixDuration::seconds(duration)
+}
+/* * end convert timestamp to actix duration */

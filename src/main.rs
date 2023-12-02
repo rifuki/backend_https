@@ -8,8 +8,8 @@ use actix_web::{
 use rst04_jwt::{
     AppState, 
     establish_connection,
-    auth::scoped_auth,
-    user::scoped_user
+    scoped_auth,
+    scoped_user
 };
 
 #[actix_web::main]
@@ -30,13 +30,25 @@ async fn main() -> std::io::Result<()> {
         eprintln!("{} [{}]", error_message, e);
         std::process::exit(1);
     });
+    let secret_access_token = std::env::var("SECRET_ACCESS_TOKEN").unwrap_or_else(|e| {
+        let error_message = "SECRET_ACCESS_TOKEN must be set.";
+        eprintln!("{} [{}]", error_message, e);
+        std::process::exit(1);
+    });
+    let secret_refresh_token = std::env::var("SECRET_REFRESH_TOKEN").unwrap_or_else(|e| {
+        let error_message = "SECRET_REFRESH_TOKEN must be set.";
+        eprintln!("{} [{}]", error_message, e);
+        std::process::exit(1);
+    });
     /* * end env var */
 
     /* database pool */
     let db_pool = establish_connection(&db_url).await;
-    let app_state = web::Data::new( AppState { db_pool } );
     /* end database pool */
 
+    let app_state = web::Data::new( 
+        AppState { db_pool, secret_access_token, secret_refresh_token } 
+    );
     /* * backbone server */
     HttpServer::new(move || {
         App::new()
