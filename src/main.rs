@@ -9,7 +9,7 @@ use rst04_jwt::{
     AppState, 
     establish_connection,
     scoped_auth,
-    scoped_user
+    scoped_user, scoped_ping
 };
 
 #[actix_web::main]
@@ -56,6 +56,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(middleware::NormalizePath::trim())
             .service(
                 web::scope("/api")
+                    .configure(scoped_ping)
                     .configure(scoped_auth)
                     .configure(scoped_user)
             )
