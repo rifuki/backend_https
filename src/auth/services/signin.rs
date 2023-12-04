@@ -50,7 +50,7 @@ pub async fn signin_service(
         .map_err(|e| {
             let app_error_message = AppErrorMessage {
                 code: StatusCode::NOT_FOUND.as_u16(),
-                message: format!("the provided user '{}' was not found in the database. please check the username and try again.", &payload.username),
+                message: format!("the provided user '{}' was not found in the database. please check the username or register first.", &payload.username),
                 details: Some(e.to_string())
             };
             AppError::NotFound(app_error_message.into())
@@ -76,7 +76,7 @@ pub async fn signin_service(
     let time_now = Utc::now().naive_utc().timestamp();
 
     /* * check is user already logged in */
-    if !user_credentials.refresh_token.is_empty() && (user_credentials.max_age > time_now) {
+    if !user_credentials.refresh_token.is_none() && (user_credentials.max_age.unwrap_or_default() > time_now) {
         let app_error_message: AppErrorMessage<Option<bool>> = AppErrorMessage {
             code: StatusCode::SEE_OTHER.as_u16(),
             message: format!("you '{}'! are already authenticated.", &user_credentials.username),

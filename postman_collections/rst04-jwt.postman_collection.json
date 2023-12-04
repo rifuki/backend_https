@@ -1,0 +1,478 @@
+{
+	"info": {
+		"_postman_id": "ef53d550-e39f-4463-a8b1-eea6c2c9766b",
+		"name": "rst04-jwt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24573539"
+	},
+	"item": [
+		{
+			"name": "get_all_users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/users",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"credentials\": {\n        \"username\": \"rifuki\",\n        \"password\": \"Baka!baka31!\"\n    }\n}"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signin",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - RiFuKi",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"RiFuKi\",\n        \"password\": \"Baka!baka31!\",\n        \"confirm_password\": \"Baka!baka31!\",\n        \"email\": \"mahomarifuki@gmail.com\",\n        \"phone_number\": \"081310774289\",\n        \"full_name\": \"mahoma rifuki\"\n    }\n}"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - AlphaWolf",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"AlphaWolf\",\n        \"password\": \"StrongPassword123!\",\n        \"confirm_password\": \"StrongPassword123!\",\n        \"email\": \"alphawolf@gmail.com\",\n        \"phone_number\": \"1234567890\",\n        \"full_name\": \"Alpha Wolf\"\n    }\n}\n"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update - AlphaWolf",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"Aozora\",\n        \"password\": \"StrongPassword123!\",\n        \"confirm_password\": \"StrongPassword123!\",\n        \"email\": \"aozoraumeko@gmail.com\",\n        \"phone_number\": \"08131077428\",\n        \"full_name\": \"Al\"\n    }\n}\n"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/users/1",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - BetaGamer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"BetaGamer\",\n        \"password\": \"G@mingRul3s!\",\n        \"confirm_password\": \"G@mingRul3s!\",\n        \"email\": \"betagamer@yahoo.com\",\n        \"phone_number\": \"9876543210\",\n        \"full_name\": \"Beta Gamer\"\n    }\n}\n"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - DeltaCoder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"DeltaCoder\",\n        \"password\": \"CodeMaster987!\",\n        \"confirm_password\": \"CodeMaster987!\",\n        \"email\": \"deltacoder@outlook.com\",\n        \"phone_number\": \"5558889999\",\n        \"full_name\": \"Delta Coder\"\n    }\n}"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - EchoExplorer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"EchoExplorer\",\n        \"password\": \"Explore123#\",\n        \"confirm_password\": \"Explore123#\",\n        \"email\": \"echoexplorer@gmail.com\",\n        \"phone_number\": \"1112223333\",\n        \"full_name\": \"Echo Explorer\"\n    }\n}\n"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - GammaArtist",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"GammaArtist\",\n        \"password\": \"ArtIsLife456*\",\n        \"confirm_password\": \"ArtIsLife456*\",\n        \"email\": \"gammaartist@icloud.com\",\n        \"phone_number\": \"7776665555\",\n        \"full_name\": \"Gamma Artist\"\n    }\n}\n"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - ZetaWriter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"ZetaWriter\",\n        \"password\": \"Writing123#\",\n        \"confirm_password\": \"Writing123#\",\n        \"email\": \"zetawriter@yahoo.com\",\n        \"phone_number\": \"9990001111\",\n        \"full_name\": \"Zeta Writer\"\n    }\n}"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - OmegaPlayer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"OmegaPlayer\",\n        \"password\": \"G@meOn321!\",\n        \"confirm_password\": \"G@meOn321!\",\n        \"email\": \"omegaplayer@outlook.com\",\n        \"phone_number\": \"3334445555\",\n        \"full_name\": \"Omega Player\"\n    }\n}"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - SigmaDesigner",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"SigmaDesigner\",\n        \"password\": \"Design4Life!\",\n        \"confirm_password\": \"Design4Life!\",\n        \"email\": \"sigmadesigner@gmail.com\",\n        \"phone_number\": \"6667778888\",\n        \"full_name\": \"Sigma Designer\"\n    }\n}\n"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - PhiPhotographer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"PhiPhotographer\",\n        \"password\": \"Capture567*\",\n        \"confirm_password\": \"Capture567*\",\n        \"email\": \"phiphotographer@icloud.com\",\n        \"phone_number\": \"4443332222\",\n        \"full_name\": \"Phi Photographer\"\n    }\n}\n"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "signup - NuUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user\": {\n        \"username\": \"NuUser\",\n        \"password\": \"NewUser789#\",\n        \"confirm_password\": \"NewUser789#\",\n        \"email\": \"nuuser@yahoo.com\",\n        \"phone_number\": \"8889990000\",\n        \"full_name\": \"Nu User\"\n    }\n}\n"
+				},
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/signup",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "destroy - user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/users/1",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "refresh_token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/refresh",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{schema}}://{{hostname}}/api/auth/logout",
+					"protocol": "{{schema}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -2,11 +2,9 @@ use crate::{
     types::AppState, 
     errors::AppError, 
     user::model::User, 
-    auth::JwtAuth,
 };
 
 pub async fn get_all_users_service(
-    _: JwtAuth,
     app_state: &AppState
 ) -> Result<Vec<User>, AppError> 
 {

@@ -54,8 +54,11 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .app_data(app_state.clone())
             .wrap(middleware::NormalizePath::trim())
-            .configure(scoped_auth)
-            .configure(scoped_user)
+            .service(
+                web::scope("/api")
+                    .configure(scoped_auth)
+                    .configure(scoped_user)
+            )
     })
     .bind(format!("0.0.0.0:{}", app_port))?
     .run()

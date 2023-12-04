@@ -25,13 +25,13 @@ use crate::{
 };
 
 pub async fn get_all_users(
-    jwt_auth: JwtAuth,
+    _: JwtAuth,
     app_state: web::Data<AppState>
 ) -> impl Responder 
 {
     let app_state = app_state.get_ref();
     
-    let get_all_users_service = get_all_users_service(jwt_auth, app_state).await;
+    let get_all_users_service = get_all_users_service(app_state).await;
     match get_all_users_service {
         Ok(users) => {
             let status_code = StatusCode::OK;

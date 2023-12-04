@@ -44,7 +44,7 @@ impl FromRequest for JwtAuth {
         if token.is_none() {
             let app_err_message: AppErrorMessage<Option<bool>> = AppErrorMessage {
                 code: StatusCode::UNAUTHORIZED.as_u16(),
-                message: String::from("unauthorized: missing or invalid authorization token."),
+                message: String::from("Unauthorized: missing or invalid authorization token."),
                 details: None
             };
             return ready(Err(AppError::Unauthorized(app_err_message.into())));
@@ -78,7 +78,7 @@ impl FromRequest for JwtAuth {
                     JwtErrorKind::ExpiredSignature => {
                         let app_err_message: AppErrorMessage<Option<bool>> = AppErrorMessage {
                             code: StatusCode::UNAUTHORIZED.as_u16(),
-                            message: String::from("access token signature expired."),
+                            message: String::from("Access token signature has expired. Please regenerate a new signature for the access token."),
                             details: None
                         };
                         AppError::Unauthorized(app_err_message.into())
@@ -86,7 +86,7 @@ impl FromRequest for JwtAuth {
                     _ => {
                         let app_err_message = AppErrorMessage {
                             code: StatusCode::UNAUTHORIZED.as_u16(),
-                            message: format!("access token validation failed."),
+                            message: format!("Access token validation failed."),
                             details: Some(e.to_string()) 
                         };
                         AppError::Unauthorized(app_err_message.into())
@@ -101,7 +101,7 @@ impl FromRequest for JwtAuth {
             if time_now >= token_exp {
                 let app_err_message: AppErrorMessage<Option<bool>> = AppErrorMessage {
                     code: StatusCode::UNAUTHORIZED.as_u16(),
-                    message: String::from("access token expired token."),
+                    message: String::from("Sorry, the access token expired token. Please obtain a new access token using the refresh token."),
                     details: None
                 };
                 return Err(AppError::Unauthorized(app_err_message.into()));
