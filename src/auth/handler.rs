@@ -46,6 +46,8 @@ pub async fn signin(
             let status_code = StatusCode::OK;
 
             let create_cookie = Cookie::build("refresh_token", user.encoded_refresh_token)
+                .secure(true)
+                .same_site(actix_web::cookie::SameSite::None)
                 .http_only(true)
                 .max_age(ACTIX_REFRESH_TOKEN_EXPIRED)
                 .path("/")
@@ -119,6 +121,9 @@ pub async fn logout(
             let status_code = StatusCode::OK;
 
             let delete_cookie = Cookie::build("refresh_token", "")
+                .http_only(true)
+                .secure(true)
+                .same_site(actix_web::cookie::SameSite::None)
                 .path("/")
                 .expires(OffsetDateTime::now_utc())
                 .finish();
