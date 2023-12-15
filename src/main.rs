@@ -2,8 +2,9 @@ use actix_web::{
     HttpServer, 
     App, 
     web, 
-    middleware
+    middleware,
 };
+use actix_cors::Cors;
 
 use rst04_jwt::{
     AppState, 
@@ -50,10 +51,18 @@ async fn main() -> std::io::Result<()> {
         AppState { db_pool, secret_access_token, secret_refresh_token } 
     );
     /* * backbone server */
+
     HttpServer::new(move || {
+        let cors = Cors::default()
+            .allow_any_header()
+            .allow_any_method()
+            .allow_any_origin()
+            .supports_credentials();
+
         App::new()
             .app_data(app_state.clone())
             .wrap(middleware::NormalizePath::trim())
+            .wrap(cors)
             .service(
                 web::scope("/api")
                     .configure(scoped_ping)
@@ -61,7 +70,7 @@ async fn main() -> std::io::Result<()> {
                     .configure(scoped_user)
             )
     })
-    .bind(format!("0.0.0.0:{}", app_port))?
+    .bind("0.0.0.0:3001")?
     .run()
     .await
     /* * end backbone server */
